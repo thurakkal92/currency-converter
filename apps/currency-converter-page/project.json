@@ -1,0 +1,9 @@
+{
+  "name": "currency-converter-page",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/currency-converter-page",
+  "projectType": "application",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project currency-converter-page --web",
+  "targets": {}
+}
