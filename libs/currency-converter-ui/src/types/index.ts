@@ -8,8 +8,14 @@ export interface TypographyStyle {
 
 // Define the Theme Type
 export interface Theme {
+  mode: 'light' | 'dark';
+  breakpoints: {
+    xs: number;
+    sm: number;
+    md: number;
+    lg: number;
+  };
   colors: {
-    mode: 'light' | 'dark';
     text: {
       default: string;
       bold: string;
@@ -80,3 +86,13 @@ export interface Theme {
     none: string;
   };
 }
+
+export type ResponsiveProp<T> =
+  | T
+  | {
+      xs?: T;
+      sm?: T;
+      md?: T;
+      lg?: T;
+      xl?: T;
+    };

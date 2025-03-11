@@ -12,16 +12,16 @@ interface IProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const StyledButton = styled('button')<IProps>(
   ({ theme, variant = 'default', fullWidth }) => {
-    const sizeStyles = theme.typography.h5;
+    const sizeStyles = theme.typography.body2;
 
     return {
       display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',
-      borderRadius: '8px',
+      borderRadius: theme.size(8),
       fontSize: sizeStyles.fontSize,
-      paddingRight: theme.size(5),
-      paddingLeft: theme.size(5),
+      paddingRight: theme.size(7),
+      paddingLeft: theme.size(7),
       paddingTop: theme.size(3),
       paddingBottom: theme.size(3),
       fontWeight: sizeStyles.fontWeight,
@@ -30,7 +30,7 @@ const StyledButton = styled('button')<IProps>(
       width: fullWidth ? '100%' : 'auto',
       transition: 'all 0.3s ease-in-out',
       whiteSpace: 'nowrap',
-      maxHeight: theme.size(14),
+      maxHeight: theme.size(12),
       backgroundColor:
         variant === 'default' ? theme.colors.brand.bold : 'transparent',
       color: variant === 'default' ? '#fff' : '',

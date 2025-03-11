@@ -1,29 +1,32 @@
 import styled from '@emotion/styled';
 import React from 'react';
-import { Theme } from '../../types';
+import { ResponsiveProp, Theme } from '../../types';
+import { getResponsiveStyles } from '../../utils';
 
 interface BoxProps extends React.HTMLAttributes<HTMLDivElement> {
-  display?:
+  display?: ResponsiveProp<
     | 'block'
     | 'inline-block'
     | 'flex'
     | 'inline-flex'
     | 'grid'
     | 'inline-grid'
-    | 'none';
-  flexDirection?: 'row' | 'column' | 'row-reverse' | 'column-reverse';
-  justifyContent?:
-    | 'flex-start'
-    | 'center'
-    | 'flex-end'
-    | 'space-between'
-    | 'space-around';
-  alignItems?: 'stretch' | 'flex-start' | 'center' | 'flex-end' | 'baseline';
+    | 'none'
+  >;
+  flexDirection?: ResponsiveProp<
+    'row' | 'column' | 'row-reverse' | 'column-reverse'
+  >;
+  justifyContent?: ResponsiveProp<
+    'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around'
+  >;
+  alignItems?: ResponsiveProp<
+    'stretch' | 'flex-start' | 'center' | 'flex-end' | 'baseline'
+  >;
   gap?: number | string;
   padding?: number | string;
   margin?: number | string;
-  width?: string | number;
-  height?: string | number;
+  width?: ResponsiveProp<React.CSSProperties['width']>;
+  height?: ResponsiveProp<React.CSSProperties['height']>;
   maxWidth?: React.CSSProperties['maxWidth'];
   backgroundColor?: keyof Theme['colors']['background'];
   border?: keyof Theme['colors']['border'];
@@ -38,11 +41,40 @@ interface BoxProps extends React.HTMLAttributes<HTMLDivElement> {
   flex?: React.CSSProperties['flex'];
   textAlign?: React.CSSProperties['textAlign'];
   position?: React.CSSProperties['position'];
-  flexWrap?: React.CSSProperties['flexWrap'];
+  flexWrap?: ResponsiveProp<React.CSSProperties['flexWrap']>;
 }
 
+const EXCLUDED_PROPS = [
+  'display',
+  'flexDirection',
+  'justifyContent',
+  'alignItems',
+  'gap',
+  'padding',
+  'margin',
+  'width',
+  'height',
+  'backgroundColor',
+  'border',
+  'borderRadius',
+  'color',
+  'zIndex',
+  'position',
+  'px',
+  'py',
+  'mx',
+  'my',
+  'boxShadow',
+  'maxWidth',
+  'flex',
+  'textAlign',
+  'flexWrap',
+];
+
 // Styled Box
-const StyledBox = styled('div')<BoxProps>(
+const StyledBox = styled('div', {
+  shouldForwardProp: (prop) => !EXCLUDED_PROPS.includes(prop), // This will prevent these props from being forwarded to the DOM
+})<BoxProps>(
   ({
     theme,
     display,
@@ -79,7 +111,6 @@ const StyledBox = styled('div')<BoxProps>(
       padding !== undefined
         ? theme.size(padding)
         : `${theme.size(py ?? 0)} ${theme.size(px ?? 0)}`,
-
     margin:
       margin !== undefined
         ? theme.size(margin)
@@ -102,12 +133,36 @@ const StyledBox = styled('div')<BoxProps>(
     position,
     flexWrap,
     boxShadow: theme.boxShadow[boxShadow ?? 'none'] || theme.boxShadow.none,
+    [`@media (min-width: ${theme.breakpoints.xs})`]: {
+      display: getResponsiveStyles(display, theme)?.xs,
+      flexWrap: getResponsiveStyles(flexWrap, theme)?.xs,
+      flexDirection: getResponsiveStyles(flexDirection, theme)?.xs,
+      width: getResponsiveStyles(width, theme)?.xs,
+    },
+    [`@media (min-width: ${theme.breakpoints.sm}px)`]: {
+      display: getResponsiveStyles(display, theme)?.sm,
+      flexWrap: getResponsiveStyles(flexWrap, theme)?.sm,
+      width: getResponsiveStyles(width, theme)?.sm,
+      flexDirection: getResponsiveStyles(flexDirection, theme)?.sm,
+    },
+    [`@media (min-width: ${theme.breakpoints.md}px)`]: {
+      display: getResponsiveStyles(display, theme)?.md,
+      flexWrap: getResponsiveStyles(flexWrap, theme)?.md,
+      width: getResponsiveStyles(width, theme)?.md,
+      flexDirection: getResponsiveStyles(flexDirection, theme)?.md,
+    },
+    [`@media (min-width: ${theme.breakpoints.lg}px)`]: {
+      display: getResponsiveStyles(display, theme)?.lg,
+      flexWrap: getResponsiveStyles(flexWrap, theme)?.lg,
+      width: getResponsiveStyles(width, theme)?.lg,
+      flexDirection: getResponsiveStyles(flexDirection, theme)?.lg,
+    },
   })
 );
 
 function Box(props: BoxProps) {
-  const { children, ...othereProps } = props;
-  return <StyledBox {...othereProps}>{children}</StyledBox>;
+  const { children, ...otherProps } = props;
+  return <StyledBox {...otherProps}>{children}</StyledBox>;
 }
 
 export { Box };

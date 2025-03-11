@@ -5,7 +5,7 @@
   "scripts": {
     "start": "npx nx dev currency-converter-page"
   },
-  "private": true,
+  "private": false,
   "dependencies": {
     "@emotion/react": "11.11.1",
     "@emotion/styled": "11.11.0",
@@ -30,10 +30,13 @@
     "@nx/next": "20.5.0",
     "@nx/playwright": "20.5.0",
     "@nx/react": "20.5.0",
+    "@nx/rollup": "20.5.0",
     "@nx/vite": "20.5.0",
     "@nx/web": "20.5.0",
     "@nx/workspace": "20.5.0",
     "@playwright/test": "^1.36.0",
+    "@rollup/plugin-url": "^8.0.2",
+    "@svgr/rollup": "^8.1.0",
     "@swc-node/register": "~1.9.1",
     "@swc/core": "~1.5.7",
     "@swc/helpers": "~0.5.11",
@@ -47,6 +50,7 @@
     "@vitest/ui": "^3.0.0",
     "autoprefixer": "10.4.13",
     "babel-jest": "^29.7.0",
+    "core-js": "^3.36.1",
     "eslint": "^9.8.0",
     "eslint-config-next": "14.2.16",
     "eslint-config-prettier": "^9.0.0",
@@ -62,6 +66,7 @@
     "nx": "20.5.0",
     "postcss": "8.4.38",
     "prettier": "^2.6.2",
+    "rollup": "^4.14.0",
     "tailwindcss": "3.4.3",
     "ts-jest": "^29.1.0",
     "ts-node": "10.9.1",

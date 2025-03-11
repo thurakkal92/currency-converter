@@ -1,0 +1,11 @@
+{
+  "name": "@cc-nx-monorepo/currency-converter-view",
+  "version": "0.0.1",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@cc-nx-monorepo/currency-converter-ui": "^0.0.1"
+  }
+}

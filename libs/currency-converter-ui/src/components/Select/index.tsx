@@ -58,7 +58,7 @@ const Label = styled('label')<{ theme: Theme }>(({ theme }) => ({
 }));
 
 const SelectLabel = styled('span')<{ theme: Theme }>(({ theme }) => ({
-  fontSize: theme.typography.h5.fontSize,
+  fontSize: theme.typography.body2.fontSize,
   // fontWeight: theme.typography.h5.fontWeight,
   color: theme.colors.text.bold,
   display: 'flex',
@@ -81,9 +81,9 @@ const StyledSelect = styled('div')<SelectProps & { theme: Theme }>(
     fontFamily: 'inherit',
     display: 'inline-flex',
     alignItems: 'center',
-    fontSize: theme.typography.h5.fontSize,
+    fontSize: theme.typography.body2.fontSize,
     fontWeight: 400,
-    lineHeight: theme.typography.h5.lineHeight,
+    lineHeight: theme.typography.body2.lineHeight,
     padding: theme.size?.(6),
     paddingLeft: startAdornment ? theme.size?.(9) : theme.size?.(6),
     width: fullWidth ? '100%' : '',

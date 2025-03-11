@@ -2,8 +2,14 @@ import { Theme } from '../types';
 import { colors } from './colors';
 
 export const theme: Theme = {
+  mode: 'light',
+  breakpoints: {
+    xs: 0,
+    sm: 600,
+    md: 960,
+    lg: 1280,
+  },
   colors: {
-    mode: 'light',
     text: {
       default: colors.slate[700],
       bold: colors.slate[900],
@@ -54,10 +60,10 @@ export const theme: Theme = {
     h4: { fontSize: '1.5rem', fontWeight: 600, lineHeight: 1.5 },
     h5: { fontSize: '1.25rem', fontWeight: 500, lineHeight: 1.6 },
     h6: { fontSize: '1rem', fontWeight: 500, lineHeight: 1.7 },
-    subtitle1: { fontSize: '1rem', fontWeight: 500, lineHeight: 1.75 },
-    subtitle2: { fontSize: '0.875rem', fontWeight: 500, lineHeight: 1.75 },
+    subtitle1: { fontSize: '1.5rem', fontWeight: 500, lineHeight: 1.75 },
+    subtitle2: { fontSize: '1rem', fontWeight: 500, lineHeight: 1.75 },
     body1: { fontSize: '1.5rem', fontWeight: 400, lineHeight: 1.5 },
-    body2: { fontSize: '0.875rem', fontWeight: 400, lineHeight: 1.5 },
+    body2: { fontSize: '1rem', fontWeight: 400, lineHeight: 1.5 },
     caption: { fontSize: '0.75rem', fontWeight: 400, lineHeight: 1.66 },
     overline: {
       fontSize: '0.75rem',
