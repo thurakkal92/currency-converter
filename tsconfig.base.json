@@ -14,7 +14,20 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@cc-nx-monorepo/currency-converter-ui": [
+        "libs/currency-converter-ui/src/index.ts"
+      ],
+      "@cc-nx-monorepo/currency-converter-ui/server": [
+        "libs/currency-converter-ui/src/server.ts"
+      ],
+      "@cc-nx-monorepo/currency-converter-view": [
+        "libs/currency-converter-view/src/index.ts"
+      ],
+      "@cc-nx-monorepo/currency-converter-view/server": [
+        "libs/currency-converter-view/src/server.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
