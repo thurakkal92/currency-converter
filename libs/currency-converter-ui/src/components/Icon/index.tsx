@@ -3,13 +3,13 @@ import { ChevronDown } from './ChevronDown';
 import { ChevronUp } from './ChevronUp';
 import { ArrowRightLeft } from './ArrowRightLeft';
 
-interface IProps extends React.HTMLAttributes<HTMLDivElement> {
+interface IProps extends React.SVGProps<SVGSVGElement> {
   icon: 'chevronDown' | 'chevronUp' | 'arrowRightLeft';
 }
 
 const ICON_MAP: Record<
   IProps['icon'],
-  React.ComponentType<React.SVGProps<SVGSVGElement>>
+  React.FC<React.SVGProps<SVGSVGElement>>
 > = {
   chevronDown: ChevronDown,
   chevronUp: ChevronUp,

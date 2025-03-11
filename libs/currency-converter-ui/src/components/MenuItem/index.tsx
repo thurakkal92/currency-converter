@@ -59,49 +59,36 @@ const StyledMenuItem = styled('li')<MenuItemProps & { theme: Theme }>(
   })
 );
 
-function MenuItem(props: MenuItemProps) {
-  const {
-    label,
-    selected,
-    disabled,
-    startAdornment,
-    endAdornment,
-    ...otherProps
-  } = props;
-  return (
-    <StyledMenuItem
-      selected={selected}
-      disabled={disabled}
-      startAdornment={startAdornment}
-      endAdornment={endAdornment}
-      {...otherProps}
-    >
-      {startAdornment && <Container>{startAdornment}</Container>}
-      <Label>{label}</Label>
-      {endAdornment && (
-        <Box height={10} width={10} ml={2}>
-          {endAdornment}
-        </Box>
-      )}
-    </StyledMenuItem>
-  );
-}
+const MenuItem = React.forwardRef<HTMLDivElement, MenuItemProps>(
+  (props, ref) => {
+    const {
+      label,
+      selected,
+      disabled,
+      startAdornment,
+      endAdornment,
+      ...otherProps
+    } = props;
+
+    return (
+      <StyledMenuItem
+        ref={ref}
+        selected={selected}
+        disabled={disabled}
+        startAdornment={startAdornment}
+        endAdornment={endAdornment}
+        {...otherProps}
+      >
+        {startAdornment && <Container>{startAdornment}</Container>}
+        <Label>{label}</Label>
+        {endAdornment && (
+          <Box height={10} width={10}>
+            {endAdornment}
+          </Box>
+        )}
+      </StyledMenuItem>
+    );
+  }
+);
 
 export { MenuItem };
-
-// // export function MenuItem({ children, onSelect }) {
-// // //   const { setOpen } = React.useContext(MenuContext);
-// //   return (
-// //     <div
-// //       role="menuitem"
-// //       tabIndex={0}
-// //       className="cursor-pointer px-4 py-2 hover:bg-gray-200"
-// //       onClick={() => {
-// //         onSelect?.();
-// //         setOpen(false);
-// //       }}
-// //     >
-// //       {children}
-// //     </div>
-// //   );
-// // }

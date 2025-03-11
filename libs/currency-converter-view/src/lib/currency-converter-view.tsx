@@ -110,13 +110,13 @@ export function CurrencyConverterView() {
                 </Typography>
                 <Typography variant="h1" color="info">
                   {convertedAmount}{' '}
-                  <Typography as="span" variant="h1" color="subtle">
+                  <Typography as="span" variant="h3" color="subtle">
                     {toCurrency.currencyName}
                   </Typography>
                 </Typography>
                 <Typography variant="caption" color="default">
-                  1 {fromCurrency.currency} = {toCurrency.rate}{' '}
-                  {toCurrency.currency}
+                  1 {fromCurrency.currency} ={' '}
+                  {(convertedAmount / amount).toFixed(2)} {toCurrency.currency}
                 </Typography>
               </>
             ) : (
