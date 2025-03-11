@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
-import React from 'react';
+import React, { JSX } from 'react';
 import { ResponsiveProp, Theme } from '../../types';
 import { getResponsiveStyles } from '../../utils';
 
 interface BoxProps extends React.HTMLAttributes<HTMLDivElement> {
+  as?: keyof JSX.IntrinsicElements;
   display?: ResponsiveProp<
     | 'block'
     | 'inline-block'
@@ -22,7 +23,7 @@ interface BoxProps extends React.HTMLAttributes<HTMLDivElement> {
   alignItems?: ResponsiveProp<
     'stretch' | 'flex-start' | 'center' | 'flex-end' | 'baseline'
   >;
-  gap?: number | string;
+  gap?: React.CSSProperties['gap'];
   padding?: number | string;
   margin?: number | string;
   width?: ResponsiveProp<React.CSSProperties['width']>;
@@ -30,6 +31,8 @@ interface BoxProps extends React.HTMLAttributes<HTMLDivElement> {
   maxWidth?: React.CSSProperties['maxWidth'];
   backgroundColor?: keyof Theme['colors']['background'];
   border?: keyof Theme['colors']['border'];
+  borderTop?: keyof Theme['colors']['border'];
+  borderBottom?: keyof Theme['colors']['border'];
   borderRadius?: number | string;
   color?: keyof Theme['colors']['text'];
   zIndex?: number;
@@ -42,9 +45,11 @@ interface BoxProps extends React.HTMLAttributes<HTMLDivElement> {
   textAlign?: React.CSSProperties['textAlign'];
   position?: React.CSSProperties['position'];
   flexWrap?: ResponsiveProp<React.CSSProperties['flexWrap']>;
+  minHeight?: React.CSSProperties['minHeight'];
 }
 
 const EXCLUDED_PROPS = [
+  'as',
   'display',
   'flexDirection',
   'justifyContent',
@@ -56,6 +61,8 @@ const EXCLUDED_PROPS = [
   'height',
   'backgroundColor',
   'border',
+  'borderTop',
+  'borderBottom',
   'borderRadius',
   'color',
   'zIndex',
@@ -64,6 +71,7 @@ const EXCLUDED_PROPS = [
   'py',
   'mx',
   'my',
+  'minHeight',
   'boxShadow',
   'maxWidth',
   'flex',
@@ -81,7 +89,7 @@ const StyledBox = styled('div', {
     flexDirection,
     justifyContent,
     alignItems,
-    gap,
+    gap = '',
     padding,
     margin,
     width,
@@ -89,6 +97,8 @@ const StyledBox = styled('div', {
     backgroundColor,
     border,
     borderRadius,
+    borderTop,
+    borderBottom,
     color,
     zIndex,
     position,
@@ -96,6 +106,7 @@ const StyledBox = styled('div', {
     py,
     my,
     mx,
+    minHeight,
     boxShadow,
     maxWidth,
     flex,
@@ -106,7 +117,7 @@ const StyledBox = styled('div', {
     flexDirection,
     justifyContent,
     alignItems,
-    gap: theme.size?.(gap) || gap,
+    gap: theme.size(gap),
     padding:
       padding !== undefined
         ? theme.size(padding)
@@ -122,6 +133,12 @@ const StyledBox = styled('div', {
       ? theme.colors.background[backgroundColor]
       : 'transparent',
     border: border ? `1px solid ${theme.colors.border[border]}` : 'none',
+    borderTop: borderTop
+      ? `1px solid ${theme.colors.border[borderTop]}`
+      : 'none',
+    borderBottom: borderBottom
+      ? `1px solid ${theme.colors.border[borderBottom]}`
+      : 'none',
     borderRadius:
       typeof borderRadius === 'number'
         ? theme.size(borderRadius)
@@ -132,6 +149,7 @@ const StyledBox = styled('div', {
     textAlign,
     position,
     flexWrap,
+    minHeight,
     boxShadow: theme.boxShadow[boxShadow ?? 'none'] || theme.boxShadow.none,
     [`@media (min-width: ${theme.breakpoints.xs})`]: {
       display: getResponsiveStyles(display, theme)?.xs,
@@ -161,8 +179,14 @@ const StyledBox = styled('div', {
 );
 
 function Box(props: BoxProps) {
-  const { children, ...otherProps } = props;
-  return <StyledBox {...otherProps}>{children}</StyledBox>;
+  const { children, as, ...otherProps } = props;
+  const Component = as || 'div';
+
+  return (
+    <StyledBox as={Component} {...otherProps}>
+      {children}
+    </StyledBox>
+  );
 }
 
 export { Box };

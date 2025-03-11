@@ -9,6 +9,8 @@ interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
   variant?: Variant;
   as?: React.ElementType;
   color?:
+    | 'light'
+    | 'dark'
     | 'default'
     | 'subtle'
     | 'bold'

@@ -25,6 +25,8 @@ export interface Theme {
       info: string;
       success: string;
       warning: string;
+      light: string;
+      dark: string;
     };
     background: {
       default: string;

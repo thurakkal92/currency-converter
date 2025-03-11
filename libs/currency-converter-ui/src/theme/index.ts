@@ -19,6 +19,8 @@ export const theme: Theme = {
       info: colors.blue[500],
       success: colors.green[500],
       warning: colors.yellow[500],
+      light: colors.common.white,
+      dark: colors.common.dark,
     },
     background: {
       default: colors.slate[100],

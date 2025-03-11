@@ -10,4 +10,5 @@ export { Box } from './components/Box';
 export { MenuItem } from './components/MenuItem';
 export { Select } from './components/Select';
 export { IconButton } from './components/IconButton';
+export { Icon } from './components/Icon';
 export { ThemeProvider } from '@emotion/react';

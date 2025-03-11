@@ -74,6 +74,8 @@ const StyledMenuWrapper = styled('ul')<{ theme: Theme }>(({ theme }) => ({
   boxShadow: theme.boxShadow['md'],
   paddingBottom: theme.size(2),
   paddingTop: theme.size(2),
+  zIndex: 1000,
+  position: 'relative',
 }));
 
 const StyledSelect = styled('div')<SelectProps & { theme: Theme }>(
