@@ -31,7 +31,7 @@ export const theme: Theme = {
       default: colors.slate[200],
       subtle: colors.slate[100],
       medium: colors.slate[300],
-      bold: colors.slate[500],
+      bold: colors.slate[600],
       hover: colors.slate[700],
       selected: colors.slate[700],
     },

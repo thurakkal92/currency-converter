@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
-import { CURRENCIES } from '../constants';
 import { Currency } from '../types';
 
-const useCurrencyConverter = () => {
+const useCurrencyConverter = (currencies: Currency[]) => {
   const [amount, setAmount] = useState<number>(100);
-  const [fromCurrency, setFromCurrency] = useState<Currency>(CURRENCIES[0]);
-  const [toCurrency, setToCurrency] = useState<Currency>(CURRENCIES[1]);
+  const [fromCurrency, setFromCurrency] = useState<Currency>(currencies[0]);
+  const [toCurrency, setToCurrency] = useState<Currency>(currencies[1]);
   const [convertedAmount, setConvertedAmount] = useState<number>(0);
 
   useEffect(() => {
@@ -33,7 +32,7 @@ const useCurrencyConverter = () => {
     convertedAmount,
     convertCurrency,
     swapCurrencies,
-    currencies: CURRENCIES,
+    currencies,
   };
 };
 

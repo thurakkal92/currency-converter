@@ -31,7 +31,7 @@ const StyledIconButton = styled('button')<IProps>(
       transition: 'all 0.3s ease-in-out',
       backgroundColor:
         variant === 'default' ? theme.colors.background.paper : 'transparent',
-      color: variant === 'default' ? theme.colors.text.default : '',
+      color: variant === 'default' ? theme.colors.border.bold : '',
       border: `1px solid ${theme.colors.border.default}`,
       '&:hover': {
         backgroundColor:
@@ -51,7 +51,7 @@ function IconButton(props: IProps) {
   const { icon, variant, size, ...otherProps } = props;
   return (
     <StyledIconButton variant={variant} size={size} {...otherProps}>
-      <Icon icon={icon} />
+      <Icon color="bold" icon={icon} />
     </StyledIconButton>
   );
 }

@@ -1,13 +1,26 @@
 import React, { createContext, useContext } from 'react';
 import useCurrencyConverter from '../hooks/useCurrencyConverter';
-import { CurrencyContextType } from '../types';
+import { Currency, CurrencyContextType } from '../types';
+import { CURRENCIES } from '../constants';
 
 const CurrencyContext = createContext<CurrencyContextType | undefined>(
   undefined
 );
 
-export function CurrencyProvider({ children }: { children: React.ReactNode }) {
-  const currencyConverter = useCurrencyConverter();
+export function CurrencyProvider({
+  children,
+  currencies,
+}: {
+  children: React.ReactNode;
+  currencies?: Currency[];
+}) {
+  if (currencies && currencies.length === 0) {
+    throw new Error('CurrencyProvider requires at least one currency.');
+  }
+
+  const validCurrencies = currencies ?? CURRENCIES;
+
+  const currencyConverter = useCurrencyConverter(validCurrencies);
 
   return (
     <CurrencyContext.Provider value={currencyConverter}>

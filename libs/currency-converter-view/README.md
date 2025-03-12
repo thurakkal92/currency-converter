@@ -1,7 +1,9 @@
 # currency-converter-view
 
-This library was generated with [Nx](https://nx.dev).
+The currency-converter-view is the core feature package. It provides the main currency conversion logic and UI widget that can be easily inserted into any application or webpage
 
-## Running unit tests
+## To install
 
-Run `nx test currency-converter-view` to execute the unit tests via [Jest](https://jestjs.io).
+```javascript
+    npm i @cc-nx-monorepo/currency-converter-view
+```

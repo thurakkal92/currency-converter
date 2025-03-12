@@ -25,6 +25,7 @@ export default function Index() {
             <Hero />
             <Box py={10} />
             <RatesChart />
+            <Box py={10} />
           </Container>
         </Box>
         <footer></footer>

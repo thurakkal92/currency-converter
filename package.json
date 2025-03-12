@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "npx nx dev currency-converter-page"
+    "dev": "npx nx dev currency-converter-page"
   },
   "private": false,
   "dependencies": {

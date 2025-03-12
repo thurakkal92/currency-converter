@@ -51,7 +51,7 @@ const StyledSpan = styled('span')<{ theme: Theme }>(({ theme }) => ({
   borderColor: theme.colors.border.subtle,
 }));
 
-const Label = styled('label')<{ theme: Theme }>(({ theme }) => ({
+const Label = styled('span')<{ theme: Theme }>(({ theme }) => ({
   fontSize: theme.typography.body2.fontSize,
   fontWeight: theme.typography.body2.fontWeight,
   color: theme.colors.text.subtle,
@@ -191,11 +191,7 @@ export function Select(props: SelectProps) {
 
   return (
     <Box display="flex" flexDirection="column" width={fullWidth ? '100%' : ''}>
-      {label && (
-        <Label htmlFor={id} id={labelId}>
-          {label}
-        </Label>
-      )}
+      {label && <Label id={labelId}>{label}</Label>}
       <StyledSelect
         id={id}
         aria-labelledby={labelId}
@@ -214,7 +210,12 @@ export function Select(props: SelectProps) {
             {startAdornment && <StyledSpan>{startAdornment}</StyledSpan>}
             {selectedItemLabel}
           </Box>
-          <Icon icon={isOpen ? 'chevronUp' : 'chevronDown'} />
+
+          <Icon
+            size="sm"
+            color="bold"
+            icon={isOpen ? 'chevronUp' : 'chevronDown'}
+          />
         </SelectLabel>
       </StyledSelect>
       {isOpen && (

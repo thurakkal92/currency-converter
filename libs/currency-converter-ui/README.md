@@ -1,7 +1,9 @@
 # currency-converter-ui
 
-This library was generated with [Nx](https://nx.dev).
+The currency-converter-ui package provides all the necessary Design System (DS) components and theming support for the currency-converter-view. It ensures consistency in the UI, making sure that all components adhere to the same visual standards.
 
-## Running unit tests
+## To install
 
-Run `nx test currency-converter-ui` to execute the unit tests via [Jest](https://jestjs.io).
+```javascript
+    npm i @cc-nx-monorepo/currency-converter-ui
+```
