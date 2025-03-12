@@ -17,6 +17,7 @@ interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
     | 'success'
     | 'error'
     | 'info'
+    | 'inverse'
     | 'warning';
   align?: 'left' | 'center' | 'right' | 'justify';
 }

@@ -6,9 +6,9 @@ import {
   Select,
   IconButton,
 } from '@cc-nx-monorepo/currency-converter-ui';
-import { useCurrency } from '../context/CurrencyContext';
+import { useCurrency } from '../../context/CurrencyContext';
 
-export function CurrencyConverterView() {
+export function CurrencyConverter() {
   const {
     amount,
     setAmount,
@@ -160,5 +160,3 @@ export function CurrencyConverterView() {
     </Box>
   );
 }
-
-export default CurrencyConverterView;

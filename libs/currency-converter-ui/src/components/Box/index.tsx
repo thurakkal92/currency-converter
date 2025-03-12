@@ -46,6 +46,7 @@ interface BoxProps extends React.HTMLAttributes<HTMLDivElement> {
   position?: React.CSSProperties['position'];
   flexWrap?: ResponsiveProp<React.CSSProperties['flexWrap']>;
   minHeight?: React.CSSProperties['minHeight'];
+  maxHeight?: React.CSSProperties['maxHeight'];
 }
 
 const EXCLUDED_PROPS = [
@@ -74,6 +75,7 @@ const EXCLUDED_PROPS = [
   'minHeight',
   'boxShadow',
   'maxWidth',
+  'maxHeight',
   'flex',
   'textAlign',
   'flexWrap',
@@ -112,6 +114,7 @@ const StyledBox = styled('div', {
     flex,
     textAlign,
     flexWrap,
+    maxHeight,
   }) => ({
     display: display || 'block',
     flexDirection,
@@ -150,7 +153,10 @@ const StyledBox = styled('div', {
     position,
     flexWrap,
     minHeight,
+    maxHeight,
     boxShadow: theme.boxShadow[boxShadow ?? 'none'] || theme.boxShadow.none,
+
+    //TODO: Improve the media query implementation
     [`@media (min-width: ${theme.breakpoints.xs})`]: {
       display: getResponsiveStyles(display, theme)?.xs,
       flexWrap: getResponsiveStyles(flexWrap, theme)?.xs,

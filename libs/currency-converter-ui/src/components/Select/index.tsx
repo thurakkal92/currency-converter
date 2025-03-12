@@ -37,6 +37,7 @@ interface SelectProps extends React.InputHTMLAttributes<HTMLDivElement> {
   label?: string;
   selectedItemLabel?: React.ReactNode;
   onMenuItemSelect?: (selectedOption: Option) => void;
+  id?: string;
 }
 
 const StyledSpan = styled('span')<{ theme: Theme }>(({ theme }) => ({
@@ -82,6 +83,7 @@ const StyledSelect = styled('div')<SelectProps & { theme: Theme }>(
   ({ theme, error = false, fullWidth = false, startAdornment }) => ({
     fontFamily: 'inherit',
     display: 'inline-flex',
+    appearance: 'none',
     alignItems: 'center',
     fontSize: theme.typography.body2.fontSize,
     fontWeight: 400,
@@ -126,11 +128,14 @@ export function Select(props: SelectProps) {
     selectedItemLabel,
     fullWidth,
     onMenuItemSelect,
+    id,
+    ...otherProps
   } = props;
   const [isOpen, setIsOpen] = React.useState(false);
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
   const [selectedIndex, setSelectedIndex] = React.useState<number | null>(null);
 
+  const labelId = React.useId();
   const { refs, floatingStyles, context } = useFloating<HTMLElement>({
     placement: 'bottom-start',
     open: isOpen,
@@ -186,15 +191,22 @@ export function Select(props: SelectProps) {
 
   return (
     <Box display="flex" flexDirection="column" width={fullWidth ? '100%' : ''}>
-      {label && <Label>{label}</Label>}
+      {label && (
+        <Label htmlFor={id} id={labelId}>
+          {label}
+        </Label>
+      )}
       <StyledSelect
-        aria-labelledby="select-label"
+        id={id}
+        aria-labelledby={labelId}
+        aria-controls={isOpen ? 'dropdown-list' : undefined}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
         tabIndex={0}
         role="combobox"
         ref={refs.setReference}
         aria-autocomplete="none"
+        {...otherProps}
         {...getReferenceProps()}
       >
         <SelectLabel>
@@ -209,7 +221,8 @@ export function Select(props: SelectProps) {
         <FloatingPortal>
           <FloatingFocusManager context={context} modal={false}>
             <StyledMenuWrapper
-              aria-labelledby="select-label"
+              aria-labelledby={labelId}
+              role="listbox"
               ref={refs.setFloating}
               style={{
                 ...floatingStyles,
@@ -228,7 +241,7 @@ export function Select(props: SelectProps) {
                     startAdornment={
                       <img
                         src={`https://flagcdn.com/${value.countryCode.toLocaleLowerCase()}.svg`}
-                        alt="Ukraine"
+                        alt={`flag-${value.countryCode}`}
                         height={24}
                         style={{ objectFit: 'cover' }}
                       />

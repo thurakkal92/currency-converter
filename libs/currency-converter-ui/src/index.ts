@@ -2,6 +2,7 @@
 
 export type { Theme } from './types';
 export * from './theme';
+export { useTheme } from '@emotion/react';
 export { GlobalStyles } from './theme/GlobalStyles';
 export { Typography } from './components/Typography';
 export { Button } from './components/Button';
@@ -11,4 +12,5 @@ export { MenuItem } from './components/MenuItem';
 export { Select } from './components/Select';
 export { IconButton } from './components/IconButton';
 export { Icon } from './components/Icon';
+export { Container } from './components/Container';
 export { ThemeProvider } from '@emotion/react';
