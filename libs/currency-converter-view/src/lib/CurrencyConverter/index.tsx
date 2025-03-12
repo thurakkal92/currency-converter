@@ -24,10 +24,10 @@ export function CurrencyConverter() {
         justifyContent="space-between"
         alignItems="flex-end"
       >
-        <div>
+        <Box alignSelf="flex-start">
           <OutputView />
-        </div>
-        <Box textAlign="right">
+        </Box>
+        <Box textAlign="right" width={{ xs: '100%', sm: 'auto' }}>
           {convertedAmount ? (
             <Typography as="div" variant="caption" color="subtle">
               <Typography variant="caption" as="span" color="info">

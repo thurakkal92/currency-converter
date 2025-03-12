@@ -13,7 +13,12 @@ function Header() {
     >
       <Box display="flex" alignItems="center">
         <Icon size="lg" icon="globe" />
-        <Box as="ul" display="flex" gap={10} px={10}>
+        <Box
+          as="ul"
+          display={{ xs: 'none', sm: 'none', md: 'flex' }}
+          gap={10}
+          px={10}
+        >
           <Typography as="li" color="inverse" variant="body2">
             Personal
           </Typography>
@@ -28,9 +33,11 @@ function Header() {
           </Typography>
         </Box>
       </Box>
-      <Typography color="inverse" variant="body2">
-        Login/Signup
-      </Typography>
+      <Box display={{ xs: 'none', sm: 'none', md: 'flex' }}>
+        <Typography color="inverse" variant="body2">
+          Login/Signup
+        </Typography>
+      </Box>
     </Box>
   );
 }
